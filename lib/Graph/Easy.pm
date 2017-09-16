@@ -1566,8 +1566,11 @@ sub as_ascii
 
   # select 'ascii' characters
   $self->{_ascii_style} = 0;
+  
+  my $asc = $self->_as_ascii(@_);
+  $asc =~ s/(\x{FFFF})//g;
+  $asc;  
 
-  $self->_as_ascii(@_);
   }
 
 sub _as_ascii
